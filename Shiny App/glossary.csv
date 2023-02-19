@@ -1,0 +1,74 @@
+﻿file,variable,description
+tree,Head_Coach,Head coach who employed assistant/coordinator prior to being hired as a head coach
+tree,Coach,Coach employed by the head coach prior to being one
+tree,weight,Number of positions held under head coach
+tree,group,Main role assistant/coordinator held under head coach
+tree,group_count,Number of times this role was held
+tree,lrole,Last role held under head coach
+tree,tw,Total wins won by head coach
+tree,tPyW,Total pythagorean wins by head coach
+tree,tg_hc,Total games coached by the head coach
+tree,ftm,The first team the head coach worked for
+tree,ltm,The last team the head coach worked for
+tree,fy_hc,First year as a head coach
+tree,ly_hc,Last year as a head coach
+tree,fy_a,First year as an assistant/coordinator for head coach
+tree,ly_a,Last year as an assistant/coordinator for head coach
+tree,Tyr,Total years employed as an assistant/coordinator
+tree,nw,Average number of positions held by year
+tree,pyw500,Binary variable; Head Coach's all time Pythagorean record is above .500
+tree,above500,Binary variable; Head Coach's all time record is above .500
+tree,odo,"Main position held was offense, defense or other (1, 2, 3)"
+tree,cord,Main position held was a coordinator role
+tree,lodo,"Last position held was offense, defense or other (1, 2, 3)"
+tree,lcord,Last position held was a coordinator role
+games,Season,Season coached
+games,Week,Week coached
+games,Date,Date game was coached
+games,Time,Time game began
+games,coach,Head coach
+games,team,Team head coach works for
+games,tie,Whether or not the game ended in a tie
+games,PF,Points scored
+games,PA,points allowed
+games,yds_gained,Yards gained
+games,yds_allowed,Yards allowed
+games,TO,Turnovers
+games,TO_forced,Turnovers forced
+games,awin,Number of cumulative wins
+games,win,Number of cumulative wins (ties are considered 0.5 wins)
+games,pywin,Number of cumulative pythagorean wins
+wins,Season,Season coached
+wins,Coach,Head coach
+wins,Tm,Team head coach works for
+wins,Win,Number of wins that season
+wins,Loss,Number of losses that season
+wins,Tie,Number of ties that season
+wins,PF,Points scored that season
+wins,PA,Points allowed that season
+wins,Total,Number of regular season games coached
+wins,fwk,Week of first home game coached
+wins,PyW_pct,Pythagorean win percentage that season
+wins,W_pct,Win percentage that season
+wins,MG,Number of regular season games in the NFL/AFL that season
+wins,tg_hc,Total games coached by the head coach
+wins,tPyW,Total pythagorean wins by head coach
+wins,tPyL,Total pythagorean losses by head coach
+wins,tW,Total wins won by head coach
+wins,tL,Total losses lost by head coach
+wins,tT,Total number of ties by head coach
+wins,PFg,Points scored per game for head coach's career
+wins,Pag,Points allowed per game for head coach's career
+wins,teams,Number of teams coached in the NFL
+wins,fy_hc,First year as a head coach
+wins,ly_hc,Last year as a head coach
+wins,yrs_hc,Total number of years as a head coach
+wins,ftm,The first team the head coach worked for
+wins,ltm,The last team the head coach worked for
+wins,mpwpct,Average pythagorean win percentage
+wins,sb,Super bowl won that season
+wins,sba,Super bowl appearance that season
+wins,coy,Coach of the year award that season
+wins,name,"Name with "" ' "" for ggplot"
+wins,pywins,"Number of pythagorean wins that season, scaled to 17 games"
+wins,awins,"Number of wins that season, scaled to 17 games"
