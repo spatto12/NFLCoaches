@@ -1,4 +1,4 @@
-# NFLCoaches
+# NFL Coaches
 R Scripts, CSV files, and glossary terms for head coaching data for the NFL during the Super Bowl Era (1966 - 2023). Data is from Pro Football Reference.
 
 The Data Cleaning folder includes a CSV file; coachhistory that includes head coaches ('66 - '21) coaching experience for who they worked for and employed 
