@@ -119,34 +119,6 @@ ui <- fluidPage(
   mainPanel(
     navbarPage("by Patton Analytics",
                
-               tabPanel("Tree",
-                        fluidRow(
-                          column(7, align = "center",
-                                 selectizeInput('name', 'Search for Head Coach:', choices = nodes$label,
-                                                multiple = TRUE, options = list(maxItems = 1)),
-                          )),
-                        mainPanel(visNetworkOutput("coach_tree", width = "100%", height = "725px"), 
-                                  style = "height:775px; width: 100%; background-color: #eeeeee;")),
-               
-               tabPanel("Comparison",
-                        fluidRow(
-                          column(7, align = "center",
-                                 selectInput('coach_1', 'Coach 1:', c(sort(unique(names0))),
-                                                selected="Bill Belichick"),
-                                 selectizeInput('coach_2', 'Coach 2 (Optional):', c(sort(unique(names0))), 
-                                              selected = "Don Shula", 
-                                             multiple = TRUE, options = list(maxItems = 1)),
-                                 selectizeInput('coach_3', 'Coach 3 (Optional):', c(sort(unique(names0))), 
-                                              selected = "Andy Reid", 
-                                             multiple = TRUE, options = list(maxItems = 1)),
-                        )#,
-                        
-                        # column(4, align = "center",
-                        #        downloadButton(outputId = 'download0', label = 'Download',
-                        #                       style = "padding: 5px 5px 5px 5px; margin: 25px 5px 10px 5px;"))
-                        ),
-                        mainPanel(plotOutput(outputId = "comparison", width = "100%", height = "100%"), style = "width: 100%;")),
-               
                tabPanel("Breakdown",
                         fluidRow(
                           column(7, align = "center",
@@ -165,6 +137,35 @@ ui <- fluidPage(
                                  ),
                mainPanel(plotOutput(outputId = "coach_szn", width = "100%", height = "100%"), style = "width: 100%;")),
                
+               tabPanel("Comparison",
+                        fluidRow(
+                          column(7, align = "center",
+                                 selectInput('coach_1', 'Coach 1:', c(sort(unique(names0))),
+                                             selected="Bill Belichick"),
+                                 selectizeInput('coach_2', 'Coach 2 (Optional):', c(sort(unique(names0))), 
+                                                selected = "Don Shula", 
+                                                multiple = TRUE, options = list(maxItems = 1)),
+                                 selectizeInput('coach_3', 'Coach 3 (Optional):', c(sort(unique(names0))), 
+                                                selected = "Andy Reid", 
+                                                multiple = TRUE, options = list(maxItems = 1)),
+                          )#,
+                          
+                          # column(4, align = "center",
+                          #        downloadButton(outputId = 'download0', label = 'Download',
+                          #                       style = "padding: 5px 5px 5px 5px; margin: 25px 5px 10px 5px;"))
+                        ),
+                        mainPanel(plotOutput(outputId = "comparison", width = "100%", height = "100%"), style = "width: 100%;")),
+               
+               
+               tabPanel("Tree",
+                        fluidRow(
+                          column(7, align = "center",
+                                 selectizeInput('name', 'Search for Head Coach:', choices = nodes$label,
+                                                multiple = TRUE, options = list(maxItems = 1)),
+                          )),
+                        mainPanel(visNetworkOutput("coach_tree", width = "100%", height = "725px"), 
+                                  style = "height:775px; width: 100%; background-color: #eeeeee;")),
+               
                tabPanel("Career",
                         fluidRow(
                           column(7, align = "center",
@@ -179,9 +180,7 @@ ui <- fluidPage(
 
 
 server <- function(input, output) { 
-  
-  
-  
+
 #TREE
   output$coach_tree <- renderVisNetwork({
     
