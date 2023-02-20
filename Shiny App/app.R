@@ -220,13 +220,10 @@ server <- function(input, output) {
              cum_aw = cumsum(awin),
              cum_ties = cumsum(tie),
              wins_above_par = cum_wins - par,
-             cum_pywins = cumsum(pywin),
-             cum_winpct = cum_wins/games,
-             cum_pypct = cum_pywins/games,
              record = paste0(cum_aw, " - ", abs(games - cum_aw), " - ", cum_ties, sep = "")
-             #roll_avg = rollmean(cum_winpct, k=4, fill=NA, align='right')
       ) |>
       ungroup() |>
+      #Team Colors
       left_join(teams_colors_logos, by = c('team' = 'team_abbr')) |>
       #Coach ID
       arrange(coach, Season, team) |> group_by(tm_wt = cumsum(c(1, diff(as.numeric(team_id)) != 0)), coach, team) |>
@@ -235,6 +232,7 @@ server <- function(input, output) {
              id = paste0(team, "_", ns_coach, "_", ls, sep = "")) |>
       ungroup()
     
+    #Table
     coach_stats <- games1 |>
       select(Coach = coach, Games = games, Record = record, WAP = wins_above_par) |>
       group_by(Coach) |>
@@ -242,13 +240,20 @@ server <- function(input, output) {
       ungroup() |>
       arrange(-Games)
     
-    max_x <- round(max(games1$games) * 0.05)
-    max_y1 <- max(games1$wins_above_par[games1$games==(max_x)])
-    max_ydif <- abs(max(games1$wins_above_par) - max_y1)
-    max_y <- max_y1 + max_ydif*0.75
-    #Fix Matt LaFleur/Vince Lombardi
-    #table_size = ifelse(max(games1$games>=100), 5, 4)
+    #Table Position
+    max_x0 <- max(games1$games)
+    max_xy0 <- mean(games1$wins_above_par[games1$games==(max_x0)])
     
+    max_y0 <- max(games1$wins_above_par)
+    min_y0 <- min(games1$wins_above_par)
+    max_yx0 <- max(games1$games[games1$wins_above_par==(max_y0)])
+    
+    max_x <- ifelse((max_x0/2 > max_yx0), round(max_x0 * 0.65), round(max_x0 * 0.05))
+    mean_y1 <- mean(games1$wins_above_par[games1$games>(max_x)])
+    max_y <- ifelse(((max_y0 + min_y0)/2 < mean_y1) & (max_x0/2 > max_yx0), min_y0 * 0.7, max_y0 * 0.7)
+    max_y <- ifelse((max_xy0 < 0) & max_y0<5, max_xy0 * 0.15, max_y)
+    
+    #Plot
     games1 |>
       ggplot(aes(x = games, y = wins_above_par, group = coach)) +
       #Table
@@ -287,7 +292,7 @@ server <- function(input, output) {
     req(comparison_plot())
     comparison_plot()
     
-  }, height = 600, width = 850) #height = 700, width = 1076
+  }, height = 600, width = 850)
   
   #DOWNLOAD COMPARISON
   output$download0 <- downloadHandler(
@@ -351,7 +356,7 @@ server <- function(input, output) {
     req(coach_plot())
     coach_plot()
     
-  }, height = 600, width = 850) #height = 700, width = 1076
+  }, height = 600, width = 850) 
   
 #DOWNLOAD BREAKDOWN
   output$download <- downloadHandler(
